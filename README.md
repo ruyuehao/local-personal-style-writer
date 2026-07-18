@@ -56,35 +56,41 @@ local-style-writer/
 ├── SKILL.md                  # Qoder 技能注册表（触发词 + 唯一入口说明）
 ├── README.md                 # 本文件
 ├── requirements.txt          # 推理端依赖（OpenVINO / optimum-intel / psutil / pydantic ...，已锁版本）
+├── PROMPT_DESIGN.md          # 提示词设计：自然语言加载与调用（智能体接入 / System Prompt）
+├── FINETUNE_GUIDE.md         # 训练 / 导出 / 量化指南（离线一次性流程）
 ├── training/                 # 训练 / 导出 / 量化脚本（开发工作区，见 FINETUNE_GUIDE.md）
 │   ├── requirements-training.txt  # 训练端锁版本依赖（torch cu124 / LLaMA-Factory / OpenVINO 栈）
 │   ├── train_qwen3_personal.sh
 │   ├── train_qwen2.5_style.sh
+│   ├── train_all.sh          # 一键串联三个训练流程
 │   ├── export_lora.sh
 │   ├── merge_and_export.py
 │   ├── convert_a_to_alpaca.py / convert_b_to_alpaca.py
 │   ├── convert_bge_to_ov.sh / end_to_end.py / validate_data.py
-│   └── *.yaml                # LLaMA-Factory 训练配置
-├── FINETUNE_GUIDE.md         # 训练 / 导出 / 量化指南（离线一次性流程）
-├── .gitignore
+│   └── *.yaml                # LLaMA-Factory 训练配置（qwen3_lora_sft / qwen2.5_lora_sft）
 ├── scripts/                  # 运行时代码（对外只暴露 run.ps1）
-│   ├── run.ps1               #   固定入口：环境 → 模型 → client.py
+│   ├── run.ps1               #   固定入口：环境 → 模型 → client.py（遍历 info.json 校验全部模型）
 │   ├── install-env.ps1       #   建 venv 并装依赖（uv 优先，回退 python -m venv）
 │   ├── client.py             #   短命客户端：拉起服务、发请求、读回结果
-│   ├── server.py             #   长驻服务：命名管道 + 模型懒加载
+│   ├── server.py             #   长驻服务：命名管道 + 模型懒加载 + 风格画像
 │   ├── device_manager.py     #   异构设备调度（CPU / GPU / NPU 自动探测）
 │   ├── qoder_inference.py    #   推理引擎（Qwen3-8B + Qwen2.5-0.5B）
 │   └── rag_engine.py         #   RAG 检索增强（bge 嵌入）
 ├── models/                   # 模型下载入口
-│   ├── download.ps1          #   下载 3 个模型（~5.6 GB）
+│   ├── download.ps1          #   下载 3 个模型（.partial 分段 + 校验 required_files 后原子重命名）
 │   └── download.sh
-├── profiles/                 # 用户风格画像（user_default.json 兜底）
+├── profiles/                 # 用户风格画像（user_default.json 兜底；运行时按用户追加）
 │   └── user_default.json
 ├── data/
-│   ├── dataset_info.json     # 数据集注册表（LLaMA-Factory 映射 4 个 dataset 键）
-│   └── rag_index/            # RAG 向量索引（运行时生成）
+│   └── dataset_info.json     # 数据集注册表（LLaMA-Factory 映射 4 个 dataset 键）
+├── tests/                    # 端到端 + 逻辑测试
+│   ├── test.ps1              #   端到端冒烟测试（拉起服务 → 生成 → 校验）
+│   ├── test_fixes.py         #   回归：已修复问题的逻辑测试
+│   ├── test_description.py   #   风格分析输出结构测试
+│   ├── test_user_style_anchor.py  # 用户风格锚点测试
+│   └── test_kill_all_servers.py   # 多服务清理测试
 ├── logs/                     # 运行时日志（server.out 等；Python 业务日志见 ~/.openvino/logs/local-style-writer/）
-└── saves/                    # 输出 / 中间产物
+└── saves/                    # 输出 / 中间产物（运行时生成）
 ```
 
 ---
