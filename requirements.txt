@@ -1,0 +1,38 @@
+# =====================================================================
+# local-style-writer · 运行时依赖清单（端侧推理 / 本地 Server）
+# ---------------------------------------------------------------------
+# 版本策略：全部用 == 严格锁定，不使用 >= 下限。
+#   原因：OpenVINO / optimum-intel / optimum / nncf / transformers 版本强耦合，
+#         官方 AIPC Skill 将 "Wrong OpenVINO version" 列为常见陷阱；
+#         >= 会让 pip 解析到不兼容新版，导致 INT4/INT8 模型加载失败。
+#
+#   验证环境：Windows 11 · Python 3.14.4 · OpenVINO 2026.2.1
+#   虚拟环境：D:/ai-skill/production-ai-skill/venv
+#   锁定日期：2026-07-12
+# =====================================================================
+
+# ---------- OpenVINO 推理核心（强耦合，必须严格对齐）----------
+openvino==2026.2.1
+openvino-tokenizers==2026.2.1.0
+
+# ---------- HuggingFace / Optimum 生态（与 OpenVINO 对应）----------
+optimum[openvino]==2.2.0
+optimum-intel==2.0.0
+nncf==3.2.0
+transformers==5.0.0
+tokenizers==0.22.2
+safetensors==0.7.0
+huggingface_hub==1.23.0
+
+# ---------- PyTorch（端侧仅需 CPU / 集成显卡）----------
+# 精简体积可选 CPU 版：pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cpu
+torch==2.13.0
+
+# ---------- 运行时辅助（相对独立，锁定防意外升级）----------
+pydantic==2.13.4
+psutil==7.2.2
+numpy==2.4.6
+
+# ---------- 模型下载器（首次运行 models/download 时需要，非核心推理依赖）----------
+# venv 未安装；按锁定日（2026-07-12）当时最新版 1.38.0（PyPI 2026-07-01）锁定
+modelscope==1.38.0

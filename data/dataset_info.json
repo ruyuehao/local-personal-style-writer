@@ -1,0 +1,56 @@
+{
+  "personal_style": {
+    "file_name": "dataset_a_alpaca_train.jsonl",
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "personal_style_val": {
+    "file_name": "dataset_a_alpaca_val.jsonl",
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "personal_style_str": {
+    "file_name": "dataset_a_alpaca_train_str.jsonl",
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "personal_style_val_str": {
+    "file_name": "dataset_a_alpaca_val_str.jsonl",
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "style_regression": {
+    "file_name": "dataset_b_regression_train_alpaca.jsonl",
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "style_regression_val": {
+    "file_name": "dataset_b_regression_val_alpaca.jsonl",
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  }
+}

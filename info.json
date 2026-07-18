@@ -1,0 +1,35 @@
+{
+    "venv_name": "local-style-writer",
+    "python_version": "3.11",
+    "mem_need_gb": 12.0,
+    "server_alive_timeout": 300,
+    "models": [
+        {
+            "model_id": "ruyuehao/qwen3-personal-writting-style-int4",
+            "dir_name": "qwen3_personal_int4",
+            "required_files": [
+                "config.json",
+                "openvino_model.xml",
+                "openvino_model.bin"
+            ]
+        },
+        {
+            "model_id": "ruyuehao/qwen2.5-0.5b-style-int4",
+            "dir_name": "qwen2.5_int4",
+            "required_files": [
+                "config.json",
+                "openvino_model.xml",
+                "openvino_model.bin"
+            ]
+        },
+        {
+            "model_id": "ruyuehao/bge-small-zh-v1.5-int8-ov",
+            "dir_name": "bge_int8",
+            "required_files": [
+                "config.json",
+                "openvino_model.xml",
+                "openvino_model.bin"
+            ]
+        }
+    ]
+}

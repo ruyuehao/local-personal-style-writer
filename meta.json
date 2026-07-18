@@ -1,0 +1,15 @@
+{
+    "display_name": "本地个性化写作",
+    "display_description": "基于本地大模型的个性化写作助手，草稿不出端",
+    "detail_describe": "端侧个性化内容生成助手。基于 QLoRA 学习用户个人写作风格，导出 INT4 模型后由本地 OpenVINO 在 NPU/GPU/CPU 上异构推理，直接生成符合用户风格的原创内容。全程本地运行、0 网络外联，适合未发表稿件、企业机密文稿等隐私敏感场景。支持内容生成、风格一致性分析，以及基于历史文章的 RAG 检索增强。",
+    "name": "local-style-writer",
+    "icon": "https://modelscope.cn/favicon.ico",
+    "use_cases": [
+        "帮我写一篇关于 AI PC 优势的短文，用我的风格，300 字左右",
+        "把这段要点扩写成一篇公众号推文，保持我一贯的语气",
+        "分析这段文字的风格一致性，看看像不像我写的",
+        "参考我以前的爆款文，写一篇同风格的新稿子"
+    ],
+    "author": "ruyuehao",
+    "version": "1.0.0"
+}
