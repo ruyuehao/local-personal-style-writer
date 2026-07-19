@@ -3,6 +3,10 @@
 > **local-style-writer** — 基于 QLoRA 个人风格学习的本地 AI 写作工具  
 > **保护未发表成果 · 保留个人品牌语调**
 
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![OpenVINO](https://img.shields.io/badge/OpenVINO-NPU%2FGPU%2FCPU-00AEEF?logo=intel&logoColor=white)](https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/overview.html)
+[![License](https://img.shields.io/badge/License-Apache_2.0-0085CA)](./)
+
 ## 项目介绍
 
 `local-style-writer` 是一个完全运行在**端侧**、**零网络外联**的个性化写作 Skill。适用于AI PC，它用 QLoRA 从你的历史文章中学习个人笔风，再由本地 INT4 量化的 Qwen3-8B 模型直接生成「像你本人写的」原创内容——草稿全程不离开你的电脑。
